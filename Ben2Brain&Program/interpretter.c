@@ -22,6 +22,11 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// BenFuck Addition
+#include "benfuck.h"
 
 #define OP_END          0
 #define OP_INC_DP       1
@@ -115,9 +120,17 @@ int execute_bf() {
 
 int main(int argc, const char * argv[])
 {
+    //BenFuck Addition
+    char* benFileName = malloc(sizeof(char) * 100);
+    strncpy(benFileName, argv[1], 100);
+    if (createBF(benFileName) == 0) {
+        fprintf(stderr, "Usage: %s filename\n", argv[0]);
+        return FAILURE;
+    }
+
     int status;
     FILE *fp;
-    if (argc != 2 || (fp = fopen(argv[1], "r")) == NULL) {
+    if (argc != 2 || (fp = fopen("brainfuck.bf", "r")) == NULL) {
         fprintf(stderr, "Usage: %s filename\n", argv[0]);
         return FAILURE;
     }
