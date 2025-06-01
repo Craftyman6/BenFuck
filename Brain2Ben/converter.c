@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-int createBF(char* filename);
-
-int getBFchar(char* benWord);
+// Given a BrainFuck character, returns id of associated BenFuck word
+int getBFword(char* brainChar);
 
 int main(int argc, const char * argv[]) {
 
@@ -22,7 +21,7 @@ int main(int argc, const char * argv[]) {
     char* buffer = malloc(sizeof(char) * 100);
 
     while (fscanf(brainFile, "%c", buffer) == 1) {
-        int id = getBFchar(buffer);
+        int id = getBFword(buffer);
         if (id != -1) {
             fprintf(benFile, "%s ", BEN_WORDS[id]);
         }
@@ -32,10 +31,11 @@ int main(int argc, const char * argv[]) {
     return 1;
 }
 
-int getBFchar(char* benWord) {
+// Given a BrainFuck character, returns id of associated BenFuck word
+int getBFword(char* brainChar) {
     char BRAIN_WORDS [8][2] = {">", "<", "+", "-", "[", "]", ",", "."};
     for (int i = 0; i < 8; i++) {
-        if (strcmp(benWord, BRAIN_WORDS[i]) == 0) {
+        if (strcmp(brainChar, BRAIN_WORDS[i]) == 0) {
             return i;
         }
     }

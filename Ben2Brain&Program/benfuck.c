@@ -3,10 +3,13 @@
 #include <string.h>
 #include "benfuck.h"
 
+// Creates a BrainFuck file given a BenFuck file
 int createBF(char* filename);
 
+// Given a BenFuck word, returns id of associated BrainFuck character
 int getBFchar(char* benWord);
 
+// Creates a BrainFuck file given a BenFuck file
 int createBF(char* filename) {
 
     char BRAIN_WORDS [8][2] = {">", "<", "+", "-", "[", "]", ",", "."};
@@ -33,6 +36,7 @@ int createBF(char* filename) {
     return 1;
 }
 
+// Given a BenFuck word, returns id of associated BrainFuck character
 int getBFchar(char* benWord) {
     char BEN_WORDS[8][7] = {"ben", "hohoho", "yes", "no", "*ring", "*burp", "grrr", "ugh"};
     for (int i = 0; i < 8; i++) {
